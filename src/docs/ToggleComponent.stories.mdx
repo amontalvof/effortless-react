@@ -1,0 +1,51 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/ToggleComponent.stories.tsx';
+import { ToggleComponent } from '../components';
+
+<Meta title="Hooks/Docs/useToggle" component={ToggleComponent} />
+
+# Overview
+
+`useToggle` is a hook that toggles the value you pass to it between true and false. This is very useful whenever you have a modal or checkbox and want to toggle between these different values.
+
+### useToggle
+
+```ts
+const useToggle = (defaultValue: any) => {
+    const [value, setValue] = useState(defaultValue);
+
+    const toggleValue = (value: any) => {
+        setValue((currentValue: any) =>
+            typeof value === 'boolean' ? value : !currentValue
+        );
+    };
+
+    return [value, toggleValue];
+};
+```
+
+### Usage
+
+```tsx
+const ToggleComponent = () => {
+    const [value, toggleValue] = useToggle(false);
+    return (
+        <StyledContainer>
+            <h1>{value.toString()}</h1>
+            <StyledButton onClick={toggleValue}>Toggle</StyledButton>
+            <StyledButton className="btn" onClick={() => toggleValue(true)}>
+                Make true
+            </StyledButton>
+            <StyledButton className="btn" onClick={() => toggleValue(false)}>
+                Make false
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useToggle">{stories.Basic()}</Story>
+</Preview>
