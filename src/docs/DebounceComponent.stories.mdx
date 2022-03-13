@@ -1,0 +1,50 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/DebounceComponent.stories.tsx';
+import { DebounceComponent } from '../components';
+
+<Meta title="Hooks/Docs/useDebounce" component={DebounceComponent} />
+
+# Overview
+
+`useDebounce` is a hook that execute a function that you pass to it after a specified delay time. For example when you type in a search input and only want to call the API when you are done typing.
+
+### useDebounce
+
+```ts
+const useDebounce = <T>(
+    callback: T,
+    delay: number,
+    dependencies: any[]
+): void => {
+    const { reset, clear } = useTimeout(callback, delay);
+    useEffect(reset, [...dependencies, reset]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(clear, []);
+};
+```
+
+### Usage
+
+```tsx
+const DebounceComponent = () => {
+    const [count, setCount] = useState(10);
+    useDebounce(() => alert(count), 1000, [count]);
+    return (
+        <StyledContainer>
+            <h1>{count}</h1>
+            <StyledButton
+                className="btn"
+                onClick={() => setCount((c) => c + 1)}
+            >
+                Increment
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useDebounce">{stories.Basic()}</Story>
+</Preview>
