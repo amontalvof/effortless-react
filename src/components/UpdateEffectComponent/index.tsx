@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useDebounce } from '../../hooks';
+import useUpdateEffect from '../../hooks/useUpdateEffect';
 import { StyledButton, StyledContainer } from '../../styles';
 
-const DebounceComponent = () => {
+const UpdateEffectComponent = () => {
     const [count, setCount] = useState(10);
-    useDebounce(() => alert(count), 1000, [count]);
+    useUpdateEffect(() => alert(count), [count]);
     return (
         <StyledContainer>
             <h1>{count}</h1>
@@ -15,4 +15,4 @@ const DebounceComponent = () => {
     );
 };
 
-export default DebounceComponent;
+export default UpdateEffectComponent;

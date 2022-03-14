@@ -53,18 +53,11 @@ const TimeoutComponent = () => {
     return (
         <StyledContainer>
             <h1>{count}</h1>
-            <StyledButton
-                className="btn"
-                onClick={() => setCount((c) => c + 1)}
-            >
+            <StyledButton onClick={() => setCount((c) => c + 1)}>
                 Increment
             </StyledButton>
-            <StyledButton className="btn" onClick={clear}>
-                Clear
-            </StyledButton>
-            <StyledButton className="btn" onClick={reset}>
-                Reset
-            </StyledButton>
+            <StyledButton onClick={clear}>Clear</StyledButton>
+            <StyledButton onClick={reset}>Reset</StyledButton>
         </StyledContainer>
     );
 };

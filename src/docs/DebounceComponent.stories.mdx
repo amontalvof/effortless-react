@@ -32,10 +32,7 @@ const DebounceComponent = () => {
     return (
         <StyledContainer>
             <h1>{count}</h1>
-            <StyledButton
-                className="btn"
-                onClick={() => setCount((c) => c + 1)}
-            >
+            <StyledButton onClick={() => setCount((c) => c + 1)}>
                 Increment
             </StyledButton>
         </StyledContainer>

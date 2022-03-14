@@ -1,0 +1,49 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/UpdateEffectComponent.stories.tsx';
+import { UpdateEffectComponent } from '../components';
+
+<Meta title="Hooks/Docs/useUpdateEffect" component={UpdateEffectComponent} />
+
+# Overview
+
+`useUpdateEffect` is a hook that runs only when the dependencies are updated unlike the `useEffect` hook which runs the first time the component is mounted and when dependencies are updated.
+
+### useUpdateEffect
+
+```ts
+const useUpdateEffect = (callback: any, dependencies: any[]) => {
+    const firstRenderRef = useRef(true);
+
+    useEffect(() => {
+        if (firstRenderRef.current) {
+            firstRenderRef.current = false;
+            return;
+        }
+        return callback();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, dependencies);
+};
+```
+
+### Usage
+
+```tsx
+const UpdateEffectComponent = () => {
+    const [count, setCount] = useState(10);
+    useUpdateEffect(() => alert(count), [count]);
+    return (
+        <StyledContainer>
+            <h1>{count}</h1>
+            <StyledButton onClick={() => setCount((c) => c + 1)}>
+                Increment
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useUpdateEffect">{stories.Basic()}</Story>
+</Preview>
