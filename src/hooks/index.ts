@@ -6,3 +6,5 @@ export { default as useTimeout } from './useTimeout';
 export { default as useDebounce } from './useDebounce';
 // * 4
 export { default as useUpdateEffect } from './useUpdateEffect';
+// * 5
+export { default as useArray } from './useArray';

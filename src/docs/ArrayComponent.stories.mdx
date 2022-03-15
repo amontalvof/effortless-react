@@ -1,0 +1,90 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/ArrayComponent.stories.tsx';
+import { ArrayComponent } from '../components';
+
+<Meta title="Hooks/Docs/useArray" component={ArrayComponent} />
+
+# Overview
+
+`useArray` is a hook that implements the main features that are repeated over and over again when working with arrays.
+
+### useArray
+
+```ts
+const useArray = (
+    defaultValue: any[]
+): {
+    array: any[];
+    set: Dispatch<SetStateAction<any[]>>;
+    push: (element: any) => void;
+    filter: (callback: any) => void;
+    update: (index: number, newElement: any) => void;
+    remove: (index: number) => void;
+    clear: () => void;
+} => {
+    const [array, setArray] = useState(defaultValue);
+
+    const push = (element: any) => {
+        setArray((arr) => [...arr, element]);
+    };
+
+    const filter = (callback: any) => {
+        setArray((arr) => arr.filter(callback));
+    };
+
+    const update = (index: number, newElement: any) => {
+        setArray((arr) => [
+            ...arr.slice(0, index),
+            newElement,
+            ...arr.slice(index + 1, arr.length),
+        ]);
+    };
+
+    const remove = (index: number) => {
+        setArray((arr) => [
+            ...arr.slice(0, index),
+            ...arr.slice(index + 1, arr.length),
+        ]);
+    };
+
+    const clear = () => {
+        setArray([]);
+    };
+
+    return { array, set: setArray, push, filter, update, remove, clear };
+};
+```
+
+### Usage
+
+```tsx
+const ArrayComponent = () => {
+    const { array, set, push, remove, filter, update, clear } = useArray([
+        1, 2, 3, 4, 5, 6,
+    ]);
+
+    return (
+        <StyledContainer>
+            <h1>{array.join(', ')}</h1>
+            <StyledButton onClick={() => push(7)}>Add 7</StyledButton>
+            <StyledButton onClick={() => update(1, 9)}>
+                Change Second Element To 9
+            </StyledButton>
+            <StyledButton onClick={() => remove(1)}>
+                Remove Second Element
+            </StyledButton>
+            <StyledButton onClick={() => filter((n) => n < 3)}>
+                Keep Numbers Less Than 4
+            </StyledButton>
+            <StyledButton onClick={() => set([1, 2])}>Set To 1, 2</StyledButton>
+            <StyledButton onClick={clear}>Clear</StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useArray">{stories.Basic()}</Story>
+</Preview>
