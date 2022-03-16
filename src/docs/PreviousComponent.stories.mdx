@@ -1,0 +1,58 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/PreviousComponent.stories.tsx';
+import { PreviousComponent } from '../components';
+
+<Meta title="Hooks/Docs/usePrevious" component={PreviousComponent} />
+
+# Overview
+
+`usePrevious` is a hook that lets you store the previous value of some piece of state and access it for some reason.
+
+### usePrevious
+
+```ts
+const usePrevious = (value: any) => {
+    const currentRef = useRef(value);
+    const previousRef = useRef();
+
+    if (currentRef.current !== value) {
+        previousRef.current = currentRef.current;
+        currentRef.current = value;
+    }
+
+    return previousRef.current;
+};
+```
+
+### Usage
+
+```tsx
+const PreviousComponent = () => {
+    const [count, setCount] = useState(0);
+    const [name, setName] = useState('Kyle');
+    const previousCount = usePrevious(count);
+
+    return (
+        <StyledContainer>
+            <h1>
+                {count} - {previousCount}
+            </h1>
+            <h1>{name}</h1>
+            <StyledButton
+                onClick={() => setCount((currentCount) => currentCount + 1)}
+            >
+                Increment
+            </StyledButton>
+            <StyledButton onClick={() => setName('John')}>
+                Change Name
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="usePrevious">{stories.Basic()}</Story>
+</Preview>

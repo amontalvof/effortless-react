@@ -8,3 +8,5 @@ export { default as useDebounce } from './useDebounce';
 export { default as useUpdateEffect } from './useUpdateEffect';
 // * 5
 export { default as useArray } from './useArray';
+// * 6
+export { default as usePrevious } from './usePrevious';
