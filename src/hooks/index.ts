@@ -10,3 +10,5 @@ export { default as useUpdateEffect } from './useUpdateEffect';
 export { default as useArray } from './useArray';
 // * 6
 export { default as usePrevious } from './usePrevious';
+// * 7
+export { default as useStateWithHistory } from './useStateWithHistory';

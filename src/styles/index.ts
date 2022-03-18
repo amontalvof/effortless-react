@@ -9,7 +9,7 @@ export const StyledContainer = styled.div`
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: #ffffff;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 `;
 
 export const StyledButton = styled.button`
@@ -31,4 +31,9 @@ export const StyledButton = styled.button`
     :hover {
         background-color: #61dafb;
     }
+`;
+
+export const ButtonsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
 `;
