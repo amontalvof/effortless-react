@@ -1,0 +1,83 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/StorageComponent.stories.tsx';
+import { StorageComponent } from '../components';
+
+<Meta title="Hooks/Docs/useStorage" component={StorageComponent} />
+
+# Overview
+
+`useStorage` is a hook that allows you to save state long term.
+
+### useStorage
+
+```ts
+export const useLocalStorage = (key: string, defaultValue: any) => {
+    return useStorage(key, defaultValue, window.localStorage);
+};
+
+export const useSessionStorage = (key: string, defaultValue: any) => {
+    return useStorage(key, defaultValue, window.sessionStorage);
+};
+
+function useStorage(key: string, defaultValue: any, storageObject: Storage) {
+    const [value, setValue] = useState(() => {
+        const jsonValue = storageObject.getItem(key);
+        if (jsonValue != null) return JSON.parse(jsonValue);
+
+        if (typeof defaultValue === 'function') {
+            return defaultValue();
+        } else {
+            return defaultValue;
+        }
+    });
+
+    useEffect(() => {
+        if (value === undefined) return storageObject.removeItem(key);
+        storageObject.setItem(key, JSON.stringify(value));
+    }, [key, value, storageObject]);
+
+    const remove = useCallback(() => {
+        setValue(undefined);
+    }, []);
+
+    return [value, setValue, remove];
+}
+```
+
+### Usage
+
+```tsx
+const StorageComponent = () => {
+    const [name, setName, removeName] = useSessionStorage(
+        'effortless-react-name',
+        'Kyle'
+    );
+    const [age, setAge, removeAge] = useLocalStorage(
+        'effortless-react-age',
+        26
+    );
+
+    return (
+        <StyledContainer>
+            <h3>useSessionStorage, useLocalStorage</h3>
+            <h1>
+                {name} - {age}
+            </h1>
+            <ButtonsContainer>
+                <StyledButton onClick={() => setName('John')}>
+                    Set Name
+                </StyledButton>
+                <StyledButton onClick={() => setAge(40)}>Set Age</StyledButton>
+                <StyledButton onClick={removeName}>Remove Name</StyledButton>
+                <StyledButton onClick={removeAge}>Remove Age</StyledButton>
+            </ButtonsContainer>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useStorage">{stories.Basic()}</Story>
+</Preview>

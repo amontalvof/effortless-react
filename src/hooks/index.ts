@@ -12,3 +12,5 @@ export { default as useArray } from './useArray';
 export { default as usePrevious } from './usePrevious';
 // * 7
 export { default as useStateWithHistory } from './useStateWithHistory';
+// * 8
+export { useLocalStorage, useSessionStorage } from './useStorage';
