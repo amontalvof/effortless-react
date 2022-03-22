@@ -1,0 +1,60 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/FetchComponent.stories.tsx';
+import { FetchComponent } from '../components';
+
+<Meta title="Hooks/Docs/useFetch" component={FetchComponent} />
+
+# Overview
+
+`useFetch` is a hook that is used to fetch data from an API.
+
+### useFetch
+
+```ts
+const DEFAULT_OPTIONS = {
+    headers: { 'Content-Type': 'application/json' },
+};
+
+const useFetch = (url: string, options = {}, dependencies: any[] = []) => {
+    return useAsync(() => {
+        return fetch(url, { ...DEFAULT_OPTIONS, ...options }).then((res) => {
+            if (res.ok) return res.json();
+            return res.json().then((json) => Promise.reject(json));
+        });
+    }, dependencies);
+};
+```
+
+### Usage
+
+```tsx
+const FetchComponent = () => {
+    const [id, setId] = useState(1);
+    const { loading, error, value } = useFetch(
+        `https://jsonplaceholder.typicode.com/todos/${id}`,
+        {},
+        [id]
+    );
+
+    return (
+        <StyledContainer>
+            <h1>id: {id}</h1>
+            <StyledButton
+                className="btn"
+                onClick={() => setId((currentId) => currentId + 1)}
+            >
+                Increment ID
+            </StyledButton>
+            <h1>Loading: {loading.toString()}</h1>
+            <StyledPre>{JSON.stringify(value, null, 4)}</StyledPre>
+            <StyledPre>{JSON.stringify(error, null, 4)}</StyledPre>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useFetch">{stories.Basic()}</Story>
+</Preview>

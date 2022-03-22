@@ -14,3 +14,7 @@ export { default as usePrevious } from './usePrevious';
 export { default as useStateWithHistory } from './useStateWithHistory';
 // * 8
 export { useLocalStorage, useSessionStorage } from './useStorage';
+// * 9
+export { default as useAsync } from './useAsync';
+// * 10
+export { default as useFetch } from './useFetch';

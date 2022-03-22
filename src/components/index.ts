@@ -6,3 +6,5 @@ export { default as ArrayComponent } from './ArrayComponent';
 export { default as PreviousComponent } from './PreviousComponent';
 export { default as StateWithHistoryComponent } from './StateWithHistoryComponent';
 export { default as StorageComponent } from './StorageComponent';
+export { default as AsyncComponent } from './AsyncComponent';
+export { default as FetchComponent } from './FetchComponent';

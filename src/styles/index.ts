@@ -9,7 +9,7 @@ export const StyledContainer = styled.div`
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: #ffffff;
-    padding-bottom: 40px;
+    padding: 0 20px 40px;
 `;
 
 export const StyledButton = styled.button`
@@ -36,4 +36,8 @@ export const StyledButton = styled.button`
 export const ButtonsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+`;
+
+export const StyledPre = styled.pre`
+    font-size: 16px;
 `;
