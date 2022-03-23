@@ -1,0 +1,55 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/ScriptComponent.stories.tsx';
+import { ScriptComponent } from '../components';
+
+<Meta title="Hooks/Docs/useScript" component={ScriptComponent} />
+
+# Overview
+
+`useScript` is a great hook when you need to load any kind of script dynamically.
+
+### useScript
+
+```ts
+const useScript = (url: string) => {
+    return useAsync(() => {
+        const script = document.createElement('script');
+        script.src = url;
+        script.async = true;
+
+        return new Promise((resolve, reject) => {
+            script.addEventListener('load', resolve);
+            script.addEventListener('error', reject);
+            document.body.appendChild(script);
+        });
+    }, [url]);
+};
+```
+
+### Usage
+
+```tsx
+const ScreenWidth = ({ loading, error }: { loading: boolean; error: any }) => {
+    if (loading) return <h1>Loading</h1>;
+    if (error) return <h1>Error</h1>;
+    return <h1>{(window as any).$(window).width()} px</h1>;
+};
+
+const ScriptComponent = () => {
+    const { loading, error } = useScript(
+        'https://code.jquery.com/jquery-3.6.0.min.js'
+    );
+    return (
+        <StyledContainer>
+            <h3>Window Width</h3>
+            <ScreenWidth loading={loading} error={error} />
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useScript">{stories.Basic()}</Story>
+</Preview>

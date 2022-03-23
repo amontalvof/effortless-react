@@ -18,3 +18,5 @@ export { useLocalStorage, useSessionStorage } from './useStorage';
 export { default as useAsync } from './useAsync';
 // * 10
 export { default as useFetch } from './useFetch';
+// * 11
+export { default as useScript } from './useScript';
