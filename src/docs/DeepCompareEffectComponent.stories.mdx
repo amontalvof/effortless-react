@@ -1,0 +1,87 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/DeepCompareEffectComponent.stories.tsx';
+import { DeepCompareEffectComponent } from '../components';
+
+<Meta
+    title="Hooks/Docs/useDeepCompareEffect"
+    component={DeepCompareEffectComponent}
+/>
+
+# Overview
+
+`useDeepCompareEffect` is a hook that works very similar to a normal `useEffect` but instead of comparing the references, it compares the actual values of the objects being passed to it.
+
+### useDeepCompareEffect
+
+```ts
+import isEqual from 'lodash/fp/isEqual';
+
+const useDeepCompareEffect = (
+    callback: EffectCallback,
+    dependencies: any[]
+) => {
+    const currentDependenciesRef = useRef() as any;
+
+    if (!isEqual(currentDependenciesRef.current, dependencies)) {
+        currentDependenciesRef.current = dependencies;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(callback, [currentDependenciesRef.current]);
+};
+```
+
+### Usage
+
+```tsx
+const DeepCompareEffectComponent = () => {
+    const [age, setAge] = useState(0);
+    const [otherCount, setOtherCount] = useState(0);
+    const useEffectCountRef = useRef() as any;
+    const useDeepCompareEffectCountRef = useRef() as any;
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const person = { age: age, name: 'Kyle' };
+
+    useEffect(() => {
+        useEffectCountRef.current.textContent =
+            parseInt(useEffectCountRef.current.textContent) + 1;
+    }, [person]);
+
+    useDeepCompareEffect(() => {
+        useDeepCompareEffectCountRef.current.textContent =
+            parseInt(useDeepCompareEffectCountRef.current.textContent) + 1;
+    }, [person]);
+
+    return (
+        <StyledContainer>
+            <h2>
+                useEffect: <span ref={useEffectCountRef}>0</span>
+            </h2>
+            <h2>
+                useDeepCompareEffect:{' '}
+                <span ref={useDeepCompareEffectCountRef}>0</span>
+            </h2>
+            <h2>Other Count: {otherCount}</h2>
+            <h2>{JSON.stringify(person)}</h2>
+            <StyledButton
+                className="btn"
+                onClick={() => setAge((currentAge) => currentAge + 1)}
+            >
+                Increment Age
+            </StyledButton>
+            <StyledButton
+                className="btn"
+                onClick={() => setOtherCount((count) => count + 1)}
+            >
+                Increment Other Count
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useDeepCompareEffect">{stories.Basic()}</Story>
+</Preview>

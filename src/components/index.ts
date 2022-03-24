@@ -9,3 +9,4 @@ export { default as StorageComponent } from './StorageComponent';
 export { default as AsyncComponent } from './AsyncComponent';
 export { default as FetchComponent } from './FetchComponent';
 export { default as ScriptComponent } from './ScriptComponent';
+export { default as DeepCompareEffectComponent } from './DeepCompareEffectComponent';

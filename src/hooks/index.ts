@@ -20,3 +20,5 @@ export { default as useAsync } from './useAsync';
 export { default as useFetch } from './useFetch';
 // * 11
 export { default as useScript } from './useScript';
+// * 12
+export { default as useDeepCompareEffect } from './useDeepCompareEffect';
