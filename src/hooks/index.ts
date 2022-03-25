@@ -22,3 +22,5 @@ export { default as useFetch } from './useFetch';
 export { default as useScript } from './useScript';
 // * 12
 export { default as useDeepCompareEffect } from './useDeepCompareEffect';
+// * 13
+export { default as useEventListener } from './useEventListener';
