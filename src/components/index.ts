@@ -11,3 +11,4 @@ export { default as FetchComponent } from './FetchComponent';
 export { default as ScriptComponent } from './ScriptComponent';
 export { default as DeepCompareEffectComponent } from './DeepCompareEffectComponent';
 export { default as EventListenerComponent } from './EventListenerComponent';
+export { default as OnScreenComponent } from './OnScreenComponent';

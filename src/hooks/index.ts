@@ -24,3 +24,5 @@ export { default as useScript } from './useScript';
 export { default as useDeepCompareEffect } from './useDeepCompareEffect';
 // * 13
 export { default as useEventListener } from './useEventListener';
+// * 14
+export { default as useOnScreen } from './useOnScreen';
