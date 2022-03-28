@@ -1,0 +1,48 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/WindowSizeComponent.stories.tsx';
+import { WindowSizeComponent } from '../components';
+
+<Meta title="Hooks/Docs/useWindowSize" component={WindowSizeComponent} />
+
+# Overview
+
+`useWindowSize` is a hook that returns the width and height of the screen.
+
+### useWindowSize
+
+```ts
+const useWindowSize = () => {
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
+    useEventListener('resize', () => {
+        setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    });
+
+    return windowSize;
+};
+```
+
+### Usage
+
+```tsx
+const WindowSizeComponent = () => {
+    const { width, height } = useWindowSize();
+
+    return (
+        <StyledContainer>
+            <h1>
+                {width} x {height}
+            </h1>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useWindowSize">{stories.Basic()}</Story>
+</Preview>

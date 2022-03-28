@@ -26,3 +26,5 @@ export { default as useDeepCompareEffect } from './useDeepCompareEffect';
 export { default as useEventListener } from './useEventListener';
 // * 14
 export { default as useOnScreen } from './useOnScreen';
+// * 15
+export { default as useWindowSize } from './useWindowSize';
