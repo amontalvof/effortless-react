@@ -28,3 +28,5 @@ export { default as useEventListener } from './useEventListener';
 export { default as useOnScreen } from './useOnScreen';
 // * 15
 export { default as useWindowSize } from './useWindowSize';
+// * 16
+export { default as useMediaQuery } from './useMediaQuery';
