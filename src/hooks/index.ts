@@ -30,3 +30,5 @@ export { default as useOnScreen } from './useOnScreen';
 export { default as useWindowSize } from './useWindowSize';
 // * 16
 export { default as useMediaQuery } from './useMediaQuery';
+// * 17
+export { default as useGeolocation } from './useGeolocation';

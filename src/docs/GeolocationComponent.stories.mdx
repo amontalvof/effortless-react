@@ -1,0 +1,73 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/GeolocationComponent.stories.tsx';
+import { GeolocationComponent } from '../components';
+
+<Meta title="Hooks/Docs/useGeolocation" component={GeolocationComponent} />
+
+# Overview
+
+`useGeolocation` is a hook that it is useful for any mapping style application.
+
+### useGeolocation
+
+```ts
+const useGeolocation = (
+    options?: any
+): { loading: boolean; error: any; data: any } => {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [data, setData] = useState({});
+
+    useEffect(() => {
+        const successHandler = (e: any) => {
+            setLoading(false);
+            setError(null);
+            setData(e.coords);
+        };
+        const errorHandler = (e: any) => {
+            setError(e);
+            setLoading(false);
+        };
+        navigator.geolocation.getCurrentPosition(
+            successHandler,
+            errorHandler,
+            options
+        );
+        const id = navigator.geolocation.watchPosition(
+            successHandler,
+            errorHandler,
+            options
+        );
+        return () => navigator.geolocation.clearWatch(id);
+    }, [options]);
+
+    return { loading, error, data };
+};
+```
+
+### Usage
+
+```tsx
+const GeolocationComponent = () => {
+    const {
+        loading,
+        error,
+        data: { latitude, longitude },
+    } = useGeolocation();
+
+    return (
+        <StyledContainer>
+            <h2>Loading: {loading.toString()}</h2>
+            <h1>latitude: {latitude}</h1>
+            <h1>longitude: {longitude}</h1>
+            <h2>Error: {error?.message}</h2>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useGeolocation">{stories.Basic()}</Story>
+</Preview>
