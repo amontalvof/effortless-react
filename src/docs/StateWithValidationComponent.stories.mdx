@@ -1,0 +1,67 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/StateWithValidationComponent.stories.tsx';
+import { StateWithValidationComponent } from '../components';
+
+<Meta
+    title="Hooks/Docs/useStateWithValidation"
+    component={StateWithValidationComponent}
+/>
+
+# Overview
+
+`useStateWithValidation` is a hook that allows you to check if the data is valid every time you update your state.
+
+### useStateWithValidation
+
+```ts
+const useStateWithValidation = (
+    validationFunc: (value: any) => boolean,
+    initialValue: any
+) => {
+    const [state, setState] = useState(initialValue);
+    const [isValid, setIsValid] = useState(() => validationFunc(state));
+
+    const onChange = useCallback(
+        (nextState) => {
+            const value =
+                typeof nextState === 'function' ? nextState(state) : nextState;
+            setState(value);
+            setIsValid(validationFunc(value));
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [validationFunc]
+    );
+
+    return [state, onChange, isValid];
+};
+```
+
+### Usage
+
+```tsx
+const StateWithValidationComponent = () => {
+    const [username, setUsername, isValid] = useStateWithValidation(
+        (name) => name.length > 5,
+        ''
+    );
+    return (
+        <StyledContainer>
+            <h1>Valid: {isValid.toString()}</h1>
+            <StyledInput
+                placeholder="Min 6 characters"
+                id="inputName"
+                error={!isValid}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useStateWithValidation">{stories.Basic()}</Story>
+</Preview>

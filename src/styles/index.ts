@@ -41,3 +41,14 @@ export const ButtonsContainer = styled.div`
 export const StyledPre = styled.pre`
     font-size: 16px;
 `;
+
+export const StyledInput = styled.input<{ error: boolean }>`
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 4px;
+    outline: none;
+    :focus {
+        border: 3px solid ${(props) => (props.error ? '#dc143c' : '#61dafb')};
+        outline: none;
+    }
+`;

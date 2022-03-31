@@ -15,3 +15,4 @@ export { default as OnScreenComponent } from './OnScreenComponent';
 export { default as WindowSizeComponent } from './WindowSizeComponent';
 export { default as MediaQueryComponent } from './MediaQueryComponent';
 export { default as GeolocationComponent } from './GeolocationComponent';
+export { default as StateWithValidationComponent } from './StateWithValidationComponent';

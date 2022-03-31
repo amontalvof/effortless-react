@@ -32,3 +32,5 @@ export { default as useWindowSize } from './useWindowSize';
 export { default as useMediaQuery } from './useMediaQuery';
 // * 17
 export { default as useGeolocation } from './useGeolocation';
+// * 18
+export { default as useStateWithValidation } from './useStateWithValidation';
