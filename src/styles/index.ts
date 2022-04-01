@@ -42,7 +42,18 @@ export const StyledPre = styled.pre`
     font-size: 16px;
 `;
 
-export const StyledInput = styled.input<{ error: boolean }>`
+export const StyledInput = styled.input<{ error?: boolean }>`
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 4px;
+    outline: none;
+    :focus {
+        border: 3px solid ${(props) => (props.error ? '#dc143c' : '#61dafb')};
+        outline: none;
+    }
+`;
+
+export const StyledTextArea = styled.textarea<{ error?: boolean }>`
     padding: 10px;
     font-size: 20px;
     border-radius: 4px;

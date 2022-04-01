@@ -1,0 +1,51 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/SizeComponent.stories.tsx';
+import { SizeComponent } from '../components';
+
+<Meta title="Hooks/Docs/useSize" component={SizeComponent} />
+
+# Overview
+
+`useSize` is a hook that allows you to get the size of an element in the DOM only when you pass the reference of that element to it.
+
+### useSize
+
+```ts
+const useSize = (ref: any) => {
+    const [size, setSize] = useState({});
+
+    useEffect(() => {
+        if (ref.current == null) return;
+        const observer = new ResizeObserver(([entry]) =>
+            setSize(entry.contentRect)
+        );
+        observer.observe(ref.current);
+        return () => observer.disconnect();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return size;
+};
+```
+
+### Usage
+
+```tsx
+const SizeComponent = () => {
+    const ref = useRef() as MutableRefObject<any>;
+    const size = useSize(ref);
+
+    return (
+        <StyledContainer>
+            <pre>{JSON.stringify(size, null, 4)}</pre>
+            <StyledTextArea ref={ref}></StyledTextArea>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useSize">{stories.Basic()}</Story>
+</Preview>

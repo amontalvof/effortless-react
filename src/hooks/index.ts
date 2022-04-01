@@ -34,3 +34,5 @@ export { default as useMediaQuery } from './useMediaQuery';
 export { default as useGeolocation } from './useGeolocation';
 // * 18
 export { default as useStateWithValidation } from './useStateWithValidation';
+// * 19
+export { default as useSize } from './useSize';
