@@ -1,0 +1,46 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/EffectOnceComponent.stories.tsx';
+import { EffectOnceComponent } from '../components';
+
+<Meta title="Hooks/Docs/useEffectOnce" component={EffectOnceComponent} />
+
+# Overview
+
+`useEffectOnce` is a hook that allows you to run a function only one time.
+
+### useEffectOnce
+
+```ts
+const useEffectOnce = (cb: EffectCallback) => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(cb, []);
+};
+```
+
+### Usage
+
+```tsx
+const EffectOnceComponent = () => {
+    const [count, setCount] = useState(0);
+
+    useEffectOnce(() => alert('Hello World'));
+
+    return (
+        <StyledContainer>
+            <h1>{count}</h1>
+            <StyledButton
+                className="btn"
+                onClick={() => setCount((c) => c + 1)}
+            >
+                Increment
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useEffectOnce">{stories.Basic()}</Story>
+</Preview>

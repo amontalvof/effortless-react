@@ -36,3 +36,5 @@ export { default as useGeolocation } from './useGeolocation';
 export { default as useStateWithValidation } from './useStateWithValidation';
 // * 19
 export { default as useSize } from './useSize';
+// * 20
+export { default as useEffectOnce } from './useEffectOnce';
