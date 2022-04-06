@@ -18,3 +18,4 @@ export { default as GeolocationComponent } from './GeolocationComponent';
 export { default as StateWithValidationComponent } from './StateWithValidationComponent';
 export { default as SizeComponent } from './SizeComponent';
 export { default as EffectOnceComponent } from './EffectOnceComponent';
+export { default as ClickOutsideComponent } from './ClickOutsideComponent';

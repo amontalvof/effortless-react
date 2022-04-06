@@ -1,0 +1,71 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/ClickOutsideComponent.stories.tsx';
+import { ClickOutsideComponent } from '../components';
+
+<Meta title="Hooks/Docs/useClickOutside" component={ClickOutsideComponent} />
+
+# Overview
+
+`useClickOutside` is a hook that allows you to detect when you click outside of a given element. It is very useful with modals.
+
+### useClickOutside
+
+```ts
+const useClickOutside = (ref: any, cb: any) => {
+    useEventListener(
+        'click',
+        (e: any) => {
+            if (ref.current == null || ref.current.contains(e.target)) return;
+            cb(e);
+        },
+        document
+    );
+};
+```
+
+### Usage
+
+```tsx
+const ClickOutsideComponent = () => {
+    const [open, setOpen] = useState(false);
+    const modalRef = useRef() as React.MutableRefObject<any>;
+
+    useClickOutside(modalRef, () => {
+        if (open) setOpen(false);
+    });
+
+    return (
+        <StyledContainer style={{ height: '500px' }}>
+            <StyledButton onClick={() => setOpen(true)}>Open</StyledButton>
+            <div
+                ref={modalRef}
+                style={{
+                    display: open ? 'block' : 'none',
+                    backgroundColor: 'white',
+                    color: 'black',
+                    width: '500px',
+                    height: '400px',
+                    position: 'absolute',
+                    borderRadius: '4px',
+                    padding: '0 20px',
+                }}
+            >
+                <h3>Modal</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Voluptatibus hic architecto quas suscipit natus dolores,
+                    quos laboriosam exercitationem cupiditate minima,
+                    repellendus nesciunt asperiores deleniti qui autem ex quo,
+                    libero laudantium!
+                </p>
+            </div>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useClickOutside">{stories.Basic()}</Story>
+</Preview>

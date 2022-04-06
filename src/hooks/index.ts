@@ -38,3 +38,5 @@ export { default as useStateWithValidation } from './useStateWithValidation';
 export { default as useSize } from './useSize';
 // * 20
 export { default as useEffectOnce } from './useEffectOnce';
+// * 21
+export { default as useClickOutside } from './useClickOutside';
