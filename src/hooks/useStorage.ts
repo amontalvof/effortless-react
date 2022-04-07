@@ -3,11 +3,11 @@
 
 import { useCallback, useState, useEffect } from 'react';
 
-export const useLocalStorage = (key: string, defaultValue: any) => {
+export const useLocalStorage = (key: string, defaultValue?: any) => {
     return useStorage(key, defaultValue, window.localStorage);
 };
 
-export const useSessionStorage = (key: string, defaultValue: any) => {
+export const useSessionStorage = (key: string, defaultValue?: any) => {
     return useStorage(key, defaultValue, window.sessionStorage);
 };
 

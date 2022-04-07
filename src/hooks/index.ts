@@ -40,3 +40,5 @@ export { default as useSize } from './useSize';
 export { default as useEffectOnce } from './useEffectOnce';
 // * 21
 export { default as useClickOutside } from './useClickOutside';
+// * 22
+export { default as useDarkMode } from './useDarkMode';

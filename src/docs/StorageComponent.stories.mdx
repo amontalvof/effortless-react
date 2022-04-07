@@ -11,11 +11,11 @@ import { StorageComponent } from '../components';
 ### useStorage
 
 ```ts
-export const useLocalStorage = (key: string, defaultValue: any) => {
+export const useLocalStorage = (key: string, defaultValue?: any) => {
     return useStorage(key, defaultValue, window.localStorage);
 };
 
-export const useSessionStorage = (key: string, defaultValue: any) => {
+export const useSessionStorage = (key: string, defaultValue?: any) => {
     return useStorage(key, defaultValue, window.sessionStorage);
 };
 

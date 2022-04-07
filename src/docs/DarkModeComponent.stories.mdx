@@ -1,0 +1,87 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/DarkModeComponent.stories.tsx';
+import { DarkModeComponent } from '../components';
+
+<Meta title="Hooks/Docs/useDarkMode" component={DarkModeComponent} />
+
+# Overview
+
+`useDarkMode` is a hook that allows you to toggle a dark mode in a given element.
+
+### useDarkMode
+
+```ts
+const useDarkMode = (element: any) => {
+    const container = document.querySelector(element);
+    const [darkMode, setDarkMode] = useLocalStorage('useDarkMode');
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    const enabled = darkMode ?? prefersDarkMode;
+    useEffect(() => {
+        container?.classList.toggle('dark-mode', enabled);
+    }, [container, enabled]);
+
+    return [enabled, setDarkMode];
+};
+```
+
+### Usage
+
+```tsx
+const DarkModeComponent = () => {
+    const [darkMode, setDarkMode] = useDarkMode('#main-container');
+
+    return (
+        <div id="main-container">
+            <button
+                className="btn"
+                onClick={() =>
+                    setDarkMode((prevDarkMode: any) => !prevDarkMode)
+                }
+                style={{
+                    border: `1px solid ${darkMode ? 'white' : 'black'}`,
+                    background: 'none',
+                    color: darkMode ? 'white' : 'black',
+                }}
+            >
+                Toggle Dark Mode
+            </button>
+        </div>
+    );
+};
+```
+
+```css
+#main-container {
+    min-height: 50vh;
+    min-width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ccc;
+}
+
+#main-container.dark-mode {
+    background-color: #333;
+}
+
+.btn {
+    font-family: 'Gill Sans', sans-serif;
+    padding: 10px 20px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 4px;
+}
+```
+
+### Example
+
+<Preview>
+    <Story name="useDarkMode">{stories.Basic()}</Story>
+</Preview>
