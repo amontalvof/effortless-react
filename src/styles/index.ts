@@ -9,7 +9,7 @@ export const StyledContainer = styled.div`
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: #ffffff;
-    padding: 0 20px 40px;
+    padding: 40px 20px 40px;
 `;
 
 export const StyledButton = styled.button`

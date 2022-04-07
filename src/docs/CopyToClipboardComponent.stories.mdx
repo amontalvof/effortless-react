@@ -1,0 +1,66 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/CopyToClipboardComponent.stories.tsx';
+import { CopyToClipboardComponent } from '../components';
+
+<Meta
+    title="Hooks/Docs/useCopyToClipboard"
+    component={CopyToClipboardComponent}
+/>
+
+# Overview
+
+`useCopyToClipboard` is a hook that allows you to implement a copy to clipboard functionality.
+
+### useCopyToClipboard
+
+```ts
+import copy from 'copy-to-clipboard';
+
+const useCopyToClipboard = (): [
+    (text: string, options?: any) => void,
+    { value: string | undefined; success: boolean | undefined }
+] => {
+    const [value, setValue] = useState<string>();
+    const [success, setSuccess] = useState<boolean>();
+
+    const copyToClipboard = (text: string, options?: any) => {
+        const result = copy(text, options);
+        if (result) setValue(text);
+        setSuccess(result);
+    };
+
+    return [copyToClipboard, { value, success }];
+};
+```
+
+### Usage
+
+```tsx
+const CopyToClipboardComponent = () => {
+    const [copyToClipboard, { success }] = useCopyToClipboard();
+
+    return (
+        <StyledContainer>
+            <p>Hello World!</p>
+            <StyledButton
+                className="btn"
+                onClick={() => copyToClipboard('Hello World!')}
+            >
+                {success ? 'Copied' : 'Copy Text'}
+            </StyledButton>
+            <br />
+            <StyledInput
+                className="input"
+                type="text"
+                placeholder="Paste text here"
+            />
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useCopyToClipboard">{stories.Basic()}</Story>
+</Preview>

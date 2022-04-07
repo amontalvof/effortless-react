@@ -20,3 +20,4 @@ export { default as SizeComponent } from './SizeComponent';
 export { default as EffectOnceComponent } from './EffectOnceComponent';
 export { default as ClickOutsideComponent } from './ClickOutsideComponent';
 export { default as DarkModeComponent } from './DarkModeComponent';
+export { default as CopyToClipboardComponent } from './CopyToClipboardComponent';

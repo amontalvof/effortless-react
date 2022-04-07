@@ -42,3 +42,5 @@ export { default as useEffectOnce } from './useEffectOnce';
 export { default as useClickOutside } from './useClickOutside';
 // * 22
 export { default as useDarkMode } from './useDarkMode';
+// * 23
+export { default as useCopyToClipboard } from './useCopyToClipboard';
