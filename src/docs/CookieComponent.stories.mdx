@@ -1,0 +1,65 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/CookieComponent.stories.tsx';
+import { CookieComponent } from '../components';
+
+<Meta title="Hooks/Docs/useCookie" component={CookieComponent} />
+
+# Overview
+
+`useCookie` is a hook that allows you to work with cookies in a easy way.
+
+### useCookie
+
+```ts
+import Cookies from 'js-cookie';
+
+const useCookie = (name: string, defaultValue: any) => {
+    const [value, setValue] = useState(() => {
+        const cookie = Cookies.get(name);
+        if (cookie) return cookie;
+        Cookies.set(name, defaultValue);
+        return defaultValue;
+    });
+
+    const updateCookie = useCallback(
+        (newValue, options) => {
+            Cookies.set(name, newValue, options);
+            setValue(newValue);
+        },
+        [name]
+    );
+
+    const deleteCookie = useCallback(() => {
+        Cookies.remove(name);
+        setValue(null);
+    }, [name]);
+
+    return [value, updateCookie, deleteCookie];
+};
+```
+
+### Usage
+
+```tsx
+const CookieComponent = () => {
+    const [value, update, remove] = useCookie('name', 'John');
+
+    return (
+        <StyledContainer>
+            <h1>{value}</h1>
+            <StyledButton className="btn" onClick={() => update('Sally')}>
+                Change Name To Sally
+            </StyledButton>
+            <StyledButton className="btn" onClick={remove}>
+                Delete Name
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useCookie">{stories.Basic()}</Story>
+</Preview>
