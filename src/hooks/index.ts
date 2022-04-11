@@ -46,3 +46,5 @@ export { default as useDarkMode } from './useDarkMode';
 export { default as useCopyToClipboard } from './useCopyToClipboard';
 // * 24
 export { default as useCookie } from './useCookie';
+// * 25
+export { default as useTranslation } from './useTranslation';

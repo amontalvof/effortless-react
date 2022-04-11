@@ -1,0 +1,105 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/TranslationComponent.stories.tsx';
+import { TranslationComponent } from '../components';
+
+<Meta title="Hooks/Docs/useTranslation" component={TranslationComponent} />
+
+# Overview
+
+`useTranslation` is a hook that helps you to build a toggle translation functionality.
+
+### useTranslation
+
+```ts
+const getNestedTranslation = (
+    language: string,
+    keys: string[],
+    translations: any
+) => {
+    return keys.reduce((obj, key) => {
+        return obj?.[key];
+    }, translations[language]);
+};
+
+const useTranslation = (translations: any) => {
+    const [language, setLanguage] = useLocalStorage('language', 'en');
+    const [fallbackLanguage, setFallbackLanguage] = useLocalStorage(
+        'fallbackLanguage',
+        'en'
+    );
+
+    const translate = (key: string) => {
+        const keys = key.split('.');
+
+        return (
+            getNestedTranslation(language, keys, translations) ||
+            getNestedTranslation(fallbackLanguage, keys, translations) ||
+            key
+        );
+    };
+
+    return {
+        language,
+        setLanguage,
+        fallbackLanguage,
+        setFallbackLanguage,
+        t: translate,
+    };
+};
+```
+
+### Usage
+
+```tsx
+import * as translations from './translations';
+
+const TranslationComponent = () => {
+    const { language, setLanguage, setFallbackLanguage, t } =
+        useTranslation(translations);
+
+    return (
+        <StyledContainer>
+            <p>language: {language}</p>
+            <p>{t('hi')}</p>
+            <p>{t('bye')}</p>
+            <p>{t('nested.value')}</p>
+            <StyledButton className="btn" onClick={() => setLanguage('es')}>
+                Change To Spanish
+            </StyledButton>
+            <StyledButton className="btn" onClick={() => setLanguage('en')}>
+                Change To English
+            </StyledButton>
+            <StyledButton
+                className="btn"
+                onClick={() => setFallbackLanguage('es')}
+            >
+                Change FB Lang
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Translations
+
+```json
+{
+    "en": {
+        "hi": "Hello",
+        "bye": "Goodbye",
+        "nested": {
+            "value": "Test"
+        }
+    },
+    "es": {
+        "hi": "Hola",
+        "bye": "Adiós"
+    }
+}
+```
+
+### Example
+
+<Preview>
+    <Story name="useTranslation">{stories.Basic()}</Story>
+</Preview>
