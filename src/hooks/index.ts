@@ -48,3 +48,5 @@ export { default as useCopyToClipboard } from './useCopyToClipboard';
 export { default as useCookie } from './useCookie';
 // * 25
 export { default as useTranslation } from './useTranslation';
+// * 26
+export { default as useOnlineStatus } from './useOnlineStatus';

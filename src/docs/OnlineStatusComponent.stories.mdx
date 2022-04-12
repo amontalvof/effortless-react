@@ -1,0 +1,42 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/OnlineStatusComponent.stories.tsx';
+import { OnlineStatusComponent } from '../components';
+
+<Meta title="Hooks/Docs/useOnlineStatus" component={OnlineStatusComponent} />
+
+# Overview
+
+`useOnlineStatus` is a hook that returns the information if the user is online or not.
+
+### useOnlineStatus
+
+```ts
+const useOnlineStatus = () => {
+    const [online, setOnline] = useState(navigator.onLine);
+
+    useEventListener('online', () => setOnline(navigator.onLine));
+    useEventListener('offline', () => setOnline(navigator.onLine));
+
+    return online;
+};
+```
+
+### Usage
+
+```tsx
+const OnlineStatusComponent = () => {
+    const online = useOnlineStatus();
+
+    return (
+        <StyledContainer>
+            <h1>Online: {online.toString()}</h1>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useOnlineStatus">{stories.Basic()}</Story>
+</Preview>

@@ -23,3 +23,4 @@ export { default as DarkModeComponent } from './DarkModeComponent';
 export { default as CopyToClipboardComponent } from './CopyToClipboardComponent';
 export { default as CookieComponent } from './CookieComponent';
 export { default as TranslationComponent } from './TranslationComponent';
+export { default as OnlineStatusComponent } from './OnlineStatusComponent';
