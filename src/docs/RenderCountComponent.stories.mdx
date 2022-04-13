@@ -1,0 +1,48 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/RenderCountComponent.stories.tsx';
+import { RenderCountComponent } from '../components';
+
+<Meta title="Hooks/Docs/useRenderCount" component={RenderCountComponent} />
+
+# Overview
+
+`useRenderCount` is a hook that shows you how many times a component is rendered, this hook is great for debugging.
+
+### useRenderCount
+
+```ts
+const useRenderCount = () => {
+    const count = useRef(1) as React.MutableRefObject<number>;
+    useEffect(() => {
+        count.current++;
+        return;
+    });
+    return count.current;
+};
+```
+
+### Usage
+
+```tsx
+const RenderCountComponent = () => {
+    const [boolean, toggle] = useToggle(false);
+
+    const renderCount = useRenderCount();
+
+    return (
+        <StyledContainer>
+            <h1>{boolean.toString()}</h1>
+            <h1>render: {renderCount}</h1>
+            <StyledButton className="btn" onClick={toggle}>
+                Toggle
+            </StyledButton>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useRenderCount">{stories.Basic()}</Story>
+</Preview>

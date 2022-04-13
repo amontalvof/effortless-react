@@ -50,3 +50,5 @@ export { default as useCookie } from './useCookie';
 export { default as useTranslation } from './useTranslation';
 // * 26
 export { default as useOnlineStatus } from './useOnlineStatus';
+// * 27
+export { default as useRenderCount } from './useRenderCount';
