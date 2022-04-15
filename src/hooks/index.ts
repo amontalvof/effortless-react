@@ -52,3 +52,5 @@ export { default as useTranslation } from './useTranslation';
 export { default as useOnlineStatus } from './useOnlineStatus';
 // * 27
 export { default as useRenderCount } from './useRenderCount';
+// * 28
+export { default as useDebugInformation } from './useDebugInformation';

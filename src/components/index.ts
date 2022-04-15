@@ -25,3 +25,4 @@ export { default as CookieComponent } from './CookieComponent';
 export { default as TranslationComponent } from './TranslationComponent';
 export { default as OnlineStatusComponent } from './OnlineStatusComponent';
 export { default as RenderCountComponent } from './RenderCountComponent';
+export { default as DebugInformationComponent } from './DebugInformationComponent';
