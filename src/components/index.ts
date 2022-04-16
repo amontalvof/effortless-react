@@ -26,3 +26,4 @@ export { default as TranslationComponent } from './TranslationComponent';
 export { default as OnlineStatusComponent } from './OnlineStatusComponent';
 export { default as RenderCountComponent } from './RenderCountComponent';
 export { default as DebugInformationComponent } from './DebugInformationComponent';
+export { default as HoverComponent } from './HoverComponent';

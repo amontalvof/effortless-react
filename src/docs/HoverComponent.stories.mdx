@@ -1,0 +1,58 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/HoverComponent.stories.tsx';
+import { HoverComponent } from '../components';
+
+<Meta title="Hooks/Docs/useHover" component={HoverComponent} />
+
+# Overview
+
+`useHover` is a hook that helps you to work with hovering and user interactions.
+
+### useHover
+
+```ts
+const useHover = (ref: any) => {
+    const [hovered, setHovered] = useState(false);
+
+    useEventListener('mouseover', () => setHovered(true), ref.current);
+    useEventListener('mouseout', () => setHovered(false), ref.current);
+
+    return hovered;
+};
+```
+
+### Usage
+
+```tsx
+const HoverComponent = () => {
+    const elementRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+    const hovered = useHover(elementRef);
+    const color = hovered ? '#61DAFB' : '#DC143C';
+    return (
+        <StyledContainer>
+            <h1>Color: {color}</h1>
+            <div
+                ref={elementRef}
+                style={{
+                    padding: '10px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: hovered ? '#61dafb' : '#dc143c',
+                    width: '100px',
+                    height: '100px',
+                    fontSize: '16px',
+                }}
+            >
+                Hover Me
+            </div>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useHover">{stories.Basic()}</Story>
+</Preview>

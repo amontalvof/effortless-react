@@ -54,3 +54,5 @@ export { default as useOnlineStatus } from './useOnlineStatus';
 export { default as useRenderCount } from './useRenderCount';
 // * 28
 export { default as useDebugInformation } from './useDebugInformation';
+// * 29
+export { default as useHover } from './useHover';
