@@ -56,3 +56,5 @@ export { default as useRenderCount } from './useRenderCount';
 export { default as useDebugInformation } from './useDebugInformation';
 // * 29
 export { default as useHover } from './useHover';
+// * 30
+export { default as useLongPress } from './useLongPress';

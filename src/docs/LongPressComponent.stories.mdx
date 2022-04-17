@@ -1,0 +1,61 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/LongPressComponent.stories.tsx';
+import { LongPressComponent } from '../components';
+
+<Meta title="Hooks/Docs/useLongPress" component={LongPressComponent} />
+
+# Overview
+
+`useLongPress` is a hook that allows you to trigger a callback function after long-pressing an element.
+
+### useLongPress
+
+```ts
+const useLongPress = (ref: any, cb: Function, { delay = 250 } = {}) => {
+    const { reset, clear } = useTimeout(cb, delay);
+    useEffectOnce(clear);
+
+    useEventListener('mousedown', reset, ref.current);
+    useEventListener('touchstart', reset, ref.current);
+
+    useEventListener('mouseup', clear, ref.current);
+    useEventListener('mouseleave', clear, ref.current);
+    useEventListener('touchend', clear, ref.current);
+};
+```
+
+### Usage
+
+```tsx
+const LongPressComponent = () => {
+    const elementRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+    useLongPress(elementRef, () => alert('Long Press'), { delay: 1000 });
+
+    return (
+        <StyledContainer>
+            <div
+                ref={elementRef}
+                style={{
+                    cursor: 'pointer',
+                    backgroundColor: '#dc143c',
+                    width: '100px',
+                    height: '100px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '16px',
+                    padding: '10px',
+                }}
+            >
+                Long press me
+            </div>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useLongPress">{stories.Basic()}</Story>
+</Preview>
