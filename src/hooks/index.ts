@@ -58,3 +58,6 @@ export { default as useDebugInformation } from './useDebugInformation';
 export { default as useHover } from './useHover';
 // * 30
 export { default as useLongPress } from './useLongPress';
+// ************************************************ //
+// * 31
+export { default as useCounter } from './useCounter';

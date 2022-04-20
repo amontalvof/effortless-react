@@ -28,3 +28,4 @@ export { default as RenderCountComponent } from './RenderCountComponent';
 export { default as DebugInformationComponent } from './DebugInformationComponent';
 export { default as HoverComponent } from './HoverComponent';
 export { default as LongPressComponent } from './LongPressComponent';
+export { default as CounterComponent } from './CounterComponent';

@@ -1,0 +1,60 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import * as stories from '../stories/CounterComponent.stories.tsx';
+import { CounterComponent } from '../components';
+
+<Meta title="Hooks/Docs/useCounter" component={CounterComponent} />
+
+# Overview
+
+`useCounter` is a hook that allows you to implement the main functionalities of a counter.
+
+### useCounter
+
+```ts
+export const useCounter = (initialState = 0) => {
+    const [counter, setCounter] = useState(initialState);
+
+    const increment = (factor = 1) => {
+        setCounter((count) => count + factor);
+    };
+    const decrement = (factor = 1) => {
+        setCounter((count) => count - factor);
+    };
+
+    const reset = () => {
+        setCounter(initialState);
+    };
+
+    return { counter, increment, decrement, reset };
+};
+```
+
+### Usage
+
+```tsx
+const CounterComponent = () => {
+    const { counter, increment, decrement, reset } = useCounter(10);
+    return (
+        <StyledContainer>
+            <h1>{counter}</h1>
+            <div>
+                <StyledButton className="btn" onClick={() => increment()}>
+                    increment
+                </StyledButton>
+                <StyledButton className="btn" onClick={() => decrement(2)}>
+                    decrement
+                </StyledButton>
+                <StyledButton className="btn" onClick={reset}>
+                    reset
+                </StyledButton>
+            </div>
+        </StyledContainer>
+    );
+};
+```
+
+### Example
+
+<Preview>
+    <Story name="useCounter">{stories.Basic()}</Story>
+</Preview>
