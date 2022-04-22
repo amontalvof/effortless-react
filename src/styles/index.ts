@@ -63,3 +63,20 @@ export const StyledTextArea = styled.textarea<{ error?: boolean }>`
         outline: none;
     }
 `;
+
+export const FormContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+`;
+
+export const FormRow = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+`;
+
+export const FormLabel = styled.label`
+    margin-right: 10px;
+`;

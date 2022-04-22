@@ -29,3 +29,4 @@ export { default as DebugInformationComponent } from './DebugInformationComponen
 export { default as HoverComponent } from './HoverComponent';
 export { default as LongPressComponent } from './LongPressComponent';
 export { default as CounterComponent } from './CounterComponent';
+export { default as FormComponent } from './FormComponent';

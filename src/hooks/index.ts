@@ -61,3 +61,5 @@ export { default as useLongPress } from './useLongPress';
 // ************************************************ //
 // * 31
 export { default as useCounter } from './useCounter';
+// * 32
+export { default as useForm } from './useForm';
