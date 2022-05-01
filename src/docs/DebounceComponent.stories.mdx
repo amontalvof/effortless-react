@@ -6,7 +6,7 @@ import { DebounceComponent } from '../components';
 
 # Overview
 
-`useDebounce` is a hook that execute a function that you pass to it after a specified delay time. For example when you type in a search input and only want to call the API when you are done typing.
+`useDebounce` is a hook that helps limit the component from being re-rendered too many times. For example, when the user type in a search input and you only want to call the API when the use finishes typing. This debouncing will allow you to delay the search until after a few milliseconds, giving the user enough time to type in their queries.
 
 ### useDebounce
 
