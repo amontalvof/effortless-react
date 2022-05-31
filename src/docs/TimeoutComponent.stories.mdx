@@ -6,7 +6,7 @@ import { TimeoutComponent } from '../components';
 
 # Overview
 
-`useTimeout` is a hook that execute a function that you pass to it after a specified delay time the first time the component is loaded. You can also stop the hook functionality by running the `clear` function which returns the hook and re-triggers the timeout usage again with the `reset` function.
+`useTimeout` is a hook that sets a leak-safe timeout and returns a function to cancel it before the timeout expires. You can also stop the hook functionality by running the `clear` function, which returns the hook and re-triggers the timeout usage again with the `reset` function.
 
 ### useTimeout
 
